@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.rain.androidexplore.Book;
 import com.rain.androidexplore.IBookManager;
+import com.rain.androidexplore.IOnNewBookArrivedListener;
 import com.rain.androidexplore.R;
 import com.rain.androidexplore.aidl.BookManagerService;
 import com.rain.androidexplore.aidl.MessengerService;
@@ -62,7 +63,7 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             String targetClassName = name.getClassName();
-            Log.e(TAG, "onServiceConnected: targetClassName:"+targetClassName);
+            Log.e(TAG, "onServiceConnected: targetClassName:" + targetClassName);
             // 演示使用messenger进行进程间通讯
             if (targetClassName.equals(MessengerService.class.getCanonicalName())) {
                 Messenger messenger = new Messenger(service);
@@ -82,29 +83,39 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
 
             // 使用aidl在客户端调用服务端方法
             if (targetClassName.equals(BookManagerService.class.getName())) {
-                iBookManager = IBookManager.Stub.asInterface(service);
-                for (int i = 0; i < 10; i++) {
-                    Book book = new Book("name" + 1, i);
-                    try {
-                        iBookManager.addBook(book);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                }
-
                 try {
+                    iBookManager = IBookManager.Stub.asInterface(service);
+                    for (int i = 0; i < 10; i++) {
+                        Book book = new Book("name" + 1, i);
+                        iBookManager.addBook(book);
+                    }
+
                     tv_content.setText(iBookManager.getBookList().toString());
+
+                    iBookManager.registerListener(mBookArrivedListener);
+
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
             }
-
-
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            iBookManager = null;
+        }
+    };
 
+    private IOnNewBookArrivedListener mBookArrivedListener = new IOnNewBookArrivedListener.Stub(){
+
+        @Override
+        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+            
+        }
+
+        @Override
+        public void onNewBookArrived(Book newBook) throws RemoteException {
+            Log.e(TAG, "onNewBookArrived: newBook:"+newBook.toString());
         }
     };
 
@@ -220,40 +231,16 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-//        Log.e(TAG, "onRestart: ");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        Log.e(TAG, "onStart: ");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        Log.e(TAG, "onResume: " );
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        Log.e(TAG, "onPause: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        Log.e(TAG, "onStop: ");
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (iBookManager != null && iBookManager.asBinder().isBinderAlive()) {
+            try {
+                iBookManager.unregisterListener(mBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
         unbindService(connection);
-//        Log.e(TAG, "onDestroy: ");
     }
 
     @Override
@@ -275,6 +262,4 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
         super.onConfigurationChanged(newConfig);
         Log.e(TAG, "onConfigurationChanged: " + newConfig.orientation);
     }
-
-
 }
