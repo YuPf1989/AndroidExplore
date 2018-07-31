@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
+import android.os.Process;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -41,7 +42,9 @@ public class BookManagerService extends Service {
         return mBinder;
     }
 
+    // aidl方法是在服务端的binder线程池中执行的
     private IBookManager.Stub mBinder = new IBookManager.Stub() {
+
 
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -50,6 +53,7 @@ public class BookManagerService extends Service {
 
         @Override
         public List<Book> getBookList() throws RemoteException {
+            Log.e(TAG, "getBookList: pid:"+Process.myPid());
             return bookList;
         }
 
@@ -74,6 +78,7 @@ public class BookManagerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e(TAG, "onCreate: pid"+ Process.myPid());
         // 每隔5s添加一本新书，并对所有注册的listener进行通知
         new Thread(new ServiceWork()).start();
     }
@@ -83,7 +88,6 @@ public class BookManagerService extends Service {
         @Override
         public void run() {
             while (!isServiceDestroyed.get()) {
-
                 SystemClock.sleep(5000);
                 int newBookCount = bookList.size() + 1;
                 Book book = new Book("newBook" + newBookCount, newBookCount);

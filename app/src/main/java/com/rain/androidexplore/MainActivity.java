@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.rain.androidexplore.about_activity_part1.TestActivity1;
 import com.rain.androidexplore.bean.UserManager;
+import com.rain.androidexplore.ipc.IPCActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG  = "MainActivity";
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_ipc:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, IPCActivity.class));
                 break;
 
         }

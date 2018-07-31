@@ -1,4 +1,4 @@
-package com.rain.androidexplore.about_activity_part1;
+package com.rain.androidexplore.ipc;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import com.rain.androidexplore.util.Constant;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
@@ -54,7 +53,6 @@ public class TestActivity2 extends AppCompatActivity implements View.OnClickList
             case R.id.btn_read:
                 readFromFile();
                 break;
-
         }
     }
 
@@ -69,7 +67,7 @@ public class TestActivity2 extends AppCompatActivity implements View.OnClickList
                         User user = (User) objectInputStream.readObject();
                         Message message = Message.obtain();
                         message.obj = user;
-                        message.setTarget(handler);
+                        handler.sendMessage(message);
                         Log.e(TAG, "run: user:"+user.toString());
                     } catch (Exception e) {
                         e.printStackTrace();

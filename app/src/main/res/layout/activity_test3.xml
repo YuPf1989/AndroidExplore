@@ -4,11 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_activity4"
+    <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开activity4"
+        android:text="text" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="姓名" />
+
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="年龄" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
         />
+
+    <Button
+        android:id="@+id/btn_activity2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开activity2" />
 
 </LinearLayout>

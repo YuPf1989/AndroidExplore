@@ -8,8 +8,14 @@
         android:name="com.rain.androidexplore.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
 
+    <!--contentProvider自定义权限-->
+    <permission
+        android:name="com.rain.androidexplore.content_provider.BookProvider"
+        android:protectionLevel="normal" />
+
     <!--声明权限-->
     <uses-permission android:name="com.rain.androidexplore.ACCESS_BOOK_SERVICE" />
+    <uses-permission android:name="com.rain.androidexplore.content_provider.BookProvider" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -42,16 +48,21 @@
 
         <!--这里是完整的进程名，允许其他组件的加入-->
         <activity
-            android:name=".about_activity_part1.TestActivity2"
-            android:process="com.rain.androidexplore.about_activity_part1.remote">
+            android:name=".ipc.TestActivity2"
+            android:process="com.rain.androidexplore.ipc.remote">
             <intent-filter>
-                <action android:name="com.rain.androidexplore.about_activity_part1_activity2" />
+                <action android:name="com.rain.androidexplore.ipc" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ipc.IPCActivity" />
-        <activity android:name=".TestActivity3" />
-        <activity android:name=".TestActivity4" />
+
+        <activity android:name=".ipc.TestActivity3" />
+
+        <activity
+            android:name=".TestActivity4"
+            android:process=":remote" />
 
         <service
             android:name=".aidl.MessengerService"
@@ -60,6 +71,13 @@
         <service
             android:name=".aidl.BookManagerService"
             android:process=":remote" />
+
+        <provider
+            android:name=".content_provider.BookProvider"
+            android:authorities="com.rain.androidexplore.content_provider.BookProvider"
+            android:exported="true"
+            android:permission="com.rain.androidexplore.content_provider.BookProvider"
+            android:process=":provider" />
     </application>
 
 </manifest>
