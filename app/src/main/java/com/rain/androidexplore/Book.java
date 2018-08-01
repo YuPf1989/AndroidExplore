@@ -48,6 +48,9 @@ public class Book  implements Parcelable{
         this.bookId = bookId;
     }
 
+    public Book() {
+    }
+
     @Override
     public String toString() {
         return "Book{" +

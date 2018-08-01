@@ -20,7 +20,6 @@ import com.rain.androidexplore.Book;
 import com.rain.androidexplore.IBookManager;
 import com.rain.androidexplore.IOnNewBookArrivedListener;
 import com.rain.androidexplore.R;
-import com.rain.androidexplore.TestActivity4;
 import com.rain.androidexplore.aidl.BookManagerService;
 import com.rain.androidexplore.aidl.MessengerService;
 import com.rain.androidexplore.bean.User;
@@ -128,10 +127,12 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ipc);
 
+
         tv_content = findViewById(R.id.tv_content);
         findViewById(R.id.btn_activity3).setOnClickListener(this);
         findViewById(R.id.btn_send_remote).setOnClickListener(this);
         findViewById(R.id.btn_invote_remote).setOnClickListener(this);
+        findViewById(R.id.btn_content_provider).setOnClickListener(this);
     }
 
     @Override
@@ -148,6 +149,10 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
 
             case R.id.btn_invote_remote:
                 connectService(BookManagerService.class);
+                break;
+
+            case R.id.btn_content_provider:
+                startActivity(new Intent(this, TestActivity4.class));
                 break;
         }
     }
