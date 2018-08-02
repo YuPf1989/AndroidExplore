@@ -39,5 +39,21 @@
         android:text="content_provider"
         />
 
+    <Button
+        android:id="@+id/btn_socket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用socket进行通讯"
+        />
+
+    <Button
+        android:id="@+id/btn_binderpool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="binder线程池的使用"
+        />
+
+
+
 
 </LinearLayout>

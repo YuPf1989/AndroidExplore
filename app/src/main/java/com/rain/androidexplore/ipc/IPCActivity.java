@@ -133,6 +133,8 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
         findViewById(R.id.btn_send_remote).setOnClickListener(this);
         findViewById(R.id.btn_invote_remote).setOnClickListener(this);
         findViewById(R.id.btn_content_provider).setOnClickListener(this);
+        findViewById(R.id.btn_socket).setOnClickListener(this);
+        findViewById(R.id.btn_binderpool).setOnClickListener(this);
     }
 
     @Override
@@ -153,6 +155,14 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
 
             case R.id.btn_content_provider:
                 startActivity(new Intent(this, TestActivity4.class));
+                break;
+
+            case R.id.btn_socket:
+                startActivity(new Intent(this,SocketClientActivity.class));
+                break;
+
+            case R.id.btn_binderpool:
+                startActivity(new Intent(this,BinderPoolActivity.class));
                 break;
         }
     }

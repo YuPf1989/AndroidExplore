@@ -10,6 +10,7 @@ import android.view.View;
 import com.rain.androidexplore.about_activity_part1.TestActivity1;
 import com.rain.androidexplore.bean.UserManager;
 import com.rain.androidexplore.ipc.IPCActivity;
+import com.rain.androidexplore.ipc.SocketClientActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG  = "MainActivity";
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, IPCActivity.class));
                 break;
 
+            case R.id.btn_socket:
+                startActivity(new Intent(this,SocketClientActivity.class));
+                break;
         }
     }
 

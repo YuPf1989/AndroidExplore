@@ -21,7 +21,7 @@ import com.rain.androidexplore.util.Constant;
  * 该service相当于server
  * 实现的功能：
  * client可以向server发送消息
- * serv可以向client发送消息
+ * server可以向client发送消息
  */
 public class MessengerService extends Service {
     private static final String TAG  = "MessengerService";
