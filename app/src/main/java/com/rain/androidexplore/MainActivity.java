@@ -11,6 +11,7 @@ import com.rain.androidexplore.about_activity_part1.TestActivity1;
 import com.rain.androidexplore.bean.UserManager;
 import com.rain.androidexplore.ipc.IPCActivity;
 import com.rain.androidexplore.ipc.SocketClientActivity;
+import com.rain.androidexplore.view.ViewActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG  = "MainActivity";
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_activity).setOnClickListener(this);
         findViewById(R.id.btn_startMain).setOnClickListener(this);
         findViewById(R.id.btn_ipc).setOnClickListener(this);
+        findViewById(R.id.btn_view).setOnClickListener(this);
 
         // 演示在不同的进程中的组件获取的静态常量的值的情况
         // 原始结果为uid = 0，此处修改为1
@@ -55,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_socket:
                 startActivity(new Intent(this,SocketClientActivity.class));
                 break;
+
+            case R.id.btn_view:
+                startActivity(new Intent(this,ViewActivity.class));
+                break;
+
         }
     }
 

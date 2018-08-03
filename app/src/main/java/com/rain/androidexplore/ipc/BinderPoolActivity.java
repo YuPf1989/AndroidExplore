@@ -44,6 +44,7 @@ public class BinderPoolActivity extends AppCompatActivity implements View.OnClic
         findViewById(R.id.btn_invote).setOnClickListener(this);
     }
 
+    // 之所以放在线程中执行，是由于binderpool.java里边bindService做了同步处理，所以不能在当前主线程做耗时操作
     private void doWork() {
         BinderPool binderPool = BinderPool.getInstance(this);
         IBinder compute_binder = binderPool.queryBinder(BinderPool.BINDER_COMPUTE);

@@ -70,6 +70,9 @@
 
         <activity android:name=".ipc.SocketClientActivity" />
         <activity android:name=".ipc.BinderPoolActivity" />
+        <activity android:name=".view.ViewActivity" />
+        <activity android:name=".view.ViewTouchEventActivity" />
+        <activity android:name=".view.ViewTranslateActivity" />
 
         <service
             android:name=".aidl.MessengerService"

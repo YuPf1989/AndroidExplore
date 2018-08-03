@@ -88,7 +88,6 @@ public class BinderPool {
         return instance;
     }
 
-    // TODO: 2018/8/2 还不知道该方法有何用
     public IBinder queryBinder(int binderCode) {
         IBinder binder = null;
         if (binderPool != null) {

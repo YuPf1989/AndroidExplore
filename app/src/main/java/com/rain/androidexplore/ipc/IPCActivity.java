@@ -42,13 +42,14 @@ import com.rain.androidexplore.util.Constant;
  * 不同的虚拟机在访问同一个对象会有多个副本，因此每个进程都有一个UserManager类，并且互不干扰
  */
 public class IPCActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG  = "IPCActivity";
+    private static final String TAG = "IPCActivity";
     private TextView tv_content;
     private IBookManager iBookManager;
+    private boolean bindService = false;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.e(TAG, "onNewBookArrived: pid："+ Process.myPid());
+            Log.e(TAG, "onNewBookArrived: pid：" + Process.myPid());
             String targetClassName = name.getClassName();
             Log.e(TAG, "onServiceConnected: targetClassName:" + targetClassName);
             // 演示使用messenger进行进程间通讯
@@ -95,7 +96,7 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
         }
     };
 
-    private IOnNewBookArrivedListener mBookArrivedListener = new IOnNewBookArrivedListener.Stub(){
+    private IOnNewBookArrivedListener mBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
 
         @Override
         public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
@@ -104,7 +105,7 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
-            Log.e(TAG, "onNewBookArrived: newBook:"+newBook.toString());
+            Log.e(TAG, "onNewBookArrived: newBook:" + newBook.toString());
         }
     };
 
@@ -122,6 +123,7 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,11 +160,11 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.btn_socket:
-                startActivity(new Intent(this,SocketClientActivity.class));
+                startActivity(new Intent(this, SocketClientActivity.class));
                 break;
 
             case R.id.btn_binderpool:
-                startActivity(new Intent(this,BinderPoolActivity.class));
+                startActivity(new Intent(this, BinderPoolActivity.class));
                 break;
         }
     }
@@ -170,6 +172,7 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
     private void connectService(Class cls) {
         Intent intent = new Intent(this, cls);
         bindService(intent, connection, BIND_AUTO_CREATE);
+        bindService = true;
     }
 
     @Override
@@ -182,6 +185,8 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
         }
-        unbindService(connection);
+        if (bindService) {
+            unbindService(connection);
+        }
     }
 }
