@@ -73,6 +73,8 @@
         <activity android:name=".view.ViewActivity" />
         <activity android:name=".view.ViewTouchEventActivity" />
         <activity android:name=".view.ViewTranslateActivity" />
+        <activity android:name=".view.ViewDispatchEventActivity" />
+        <activity android:name=".view.CustomViewActivity" />
 
         <service
             android:name=".aidl.MessengerService"

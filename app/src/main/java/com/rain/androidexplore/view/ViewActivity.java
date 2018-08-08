@@ -3,17 +3,10 @@ package com.rain.androidexplore.view;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.rain.androidexplore.R;
 
@@ -42,7 +35,6 @@ import com.rain.androidexplore.R;
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG  = "ViewActivity";
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +43,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.btn_on_touch_event).setOnClickListener(this);
         findViewById(R.id.btn_translate).setOnClickListener(this);
+        findViewById(R.id.btn_dispatch_view_event).setOnClickListener(this);
+        findViewById(R.id.btn_custom_view).setOnClickListener(this);
+
+        // 演示anr异常,实际情形是手机出现30s的黑屏，但并没有崩溃，最后仍打开了页面
+//        SystemClock.sleep(30000);
 
     }
 
@@ -58,13 +55,20 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
 
-
             case R.id.btn_on_touch_event:
                 startActivity(new Intent(this,ViewTouchEventActivity.class));
                 break;
 
             case R.id.btn_translate:
                 startActivity(new Intent(this,ViewTranslateActivity.class));
+                break;
+
+            case R.id.btn_dispatch_view_event:
+                startActivity(new Intent(this,ViewDispatchEventActivity.class));
+                break;
+
+            case R.id.btn_custom_view:
+                startActivity(new Intent(this,CustomViewActivity.class));
                 break;
         }
     }

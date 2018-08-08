@@ -165,4 +165,10 @@ public class ViewTouchEventActivity extends AppCompatActivity {
 //        }
 //        return super.onTouchEvent(event);
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+
+    }
 }
