@@ -189,4 +189,6 @@ public class IPCActivity extends AppCompatActivity implements View.OnClickListen
             unbindService(connection);
         }
     }
+
+
 }

@@ -11,7 +11,9 @@ import com.rain.androidexplore.about_activity_part1.TestActivity1;
 import com.rain.androidexplore.bean.UserManager;
 import com.rain.androidexplore.ipc.IPCActivity;
 import com.rain.androidexplore.ipc.SocketClientActivity;
+import com.rain.androidexplore.remote_view.RemoteViewActivity;
 import com.rain.androidexplore.view.ViewActivity;
+import com.rain.androidexplore.window_windowmanager.WindowManagerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG  = "MainActivity";
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_startMain).setOnClickListener(this);
         findViewById(R.id.btn_ipc).setOnClickListener(this);
         findViewById(R.id.btn_view).setOnClickListener(this);
+        findViewById(R.id.btn_remote_view).setOnClickListener(this);
+        findViewById(R.id.btn_windowmanager).setOnClickListener(this);
 
         // 演示在不同的进程中的组件获取的静态常量的值的情况
         // 原始结果为uid = 0，此处修改为1
@@ -60,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_view:
                 startActivity(new Intent(this,ViewActivity.class));
+                break;
+
+            case R.id.btn_remote_view:
+                startActivity(new Intent(this,RemoteViewActivity.class));
+
+            case R.id.btn_windowmanager:
+                startActivity(new Intent(this,WindowManagerActivity.class));
                 break;
 
         }

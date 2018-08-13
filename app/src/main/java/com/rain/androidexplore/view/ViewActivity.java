@@ -45,6 +45,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_translate).setOnClickListener(this);
         findViewById(R.id.btn_dispatch_view_event).setOnClickListener(this);
         findViewById(R.id.btn_custom_view).setOnClickListener(this);
+        findViewById(R.id.btn_view_anim).setOnClickListener(this);
 
         // 演示anr异常,实际情形是手机出现30s的黑屏，但并没有崩溃，最后仍打开了页面
 //        SystemClock.sleep(30000);
@@ -70,6 +71,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_custom_view:
                 startActivity(new Intent(this,CustomViewActivity.class));
                 break;
+
+
+            case R.id.btn_view_anim:
+                startActivity(new Intent(this,ViewAnimActivity.class));
+                break;
+
         }
     }
 }
