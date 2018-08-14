@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.rain.androidexplore.about_activity_part1.TestActivity1;
 import com.rain.androidexplore.bean.UserManager;
+import com.rain.androidexplore.bitmap.BitmapActivity;
 import com.rain.androidexplore.ipc.IPCActivity;
 import com.rain.androidexplore.ipc.SocketClientActivity;
 import com.rain.androidexplore.remote_view.RemoteViewActivity;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_view).setOnClickListener(this);
         findViewById(R.id.btn_remote_view).setOnClickListener(this);
         findViewById(R.id.btn_windowmanager).setOnClickListener(this);
+        findViewById(R.id.btn_load_bitmap).setOnClickListener(this);
+        findViewById(R.id.btn_list).setOnClickListener(this);
+        findViewById(R.id.btn_crashhandler).setOnClickListener(this);
 
         // 演示在不同的进程中的组件获取的静态常量的值的情况
         // 原始结果为uid = 0，此处修改为1
@@ -71,6 +75,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_windowmanager:
                 startActivity(new Intent(this,WindowManagerActivity.class));
+                break;
+
+            case R.id.btn_load_bitmap:
+                startActivity(new Intent(this,BitmapActivity.class));
+                break;
+
+            case R.id.btn_list:
+                startActivity(new Intent(this,ListViewActivity.class));
+                break;
+
+            case R.id.btn_crashhandler:
+                startActivity(new Intent(this,CommonTestActvity.class));
                 break;
 
         }

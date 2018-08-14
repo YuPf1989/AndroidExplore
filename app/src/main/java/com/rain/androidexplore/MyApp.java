@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.rain.androidexplore.other.CrashHandler;
 
 /**
  * Author:rain
@@ -30,6 +31,10 @@ public class MyApp extends Application {
                 return BuildConfig.DEBUG;
             }
         });
+
+        // 初始化crashHandler异常处理器
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
 
         Log.e(TAG, "onCreate: pid:"+ Process.myPid());
     }

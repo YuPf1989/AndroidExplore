@@ -75,6 +75,9 @@
         <activity android:name=".remote_view.RemoteViewActivity" />
         <activity android:name=".view.ViewAnimActivity" />
         <activity android:name=".window_windowmanager.WindowManagerActivity" />
+        <activity android:name=".bitmap.BitmapActivity" />
+        <activity android:name=".ListViewActivity" />
+        <activity android:name=".CommonTestActvity" />
 
         <service
             android:name=".aidl.MessengerService"

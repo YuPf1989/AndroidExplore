@@ -26,6 +26,7 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_test1);
         Log.e(TAG, "onCreate: uid:" + UserManager.uid);
 
+
     }
 
     @Override
@@ -44,19 +45,15 @@ public class TestActivity1 extends AppCompatActivity implements View.OnClickList
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         outState.putString("extra", "data");
         super.onSaveInstanceState(outState, outPersistentState);
-        Log.e(TAG, "onSaveInstanceState: ");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.e(TAG, "onRestoreInstanceState: ");
-        Log.e(TAG, "onRestoreInstanceState: savedInstanceState:" + savedInstanceState.getString("extra"));
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Log.e(TAG, "onConfigurationChanged: " + newConfig.orientation);
     }
 }

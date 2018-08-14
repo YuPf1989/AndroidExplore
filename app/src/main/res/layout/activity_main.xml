@@ -51,6 +51,25 @@
             android:layout_height="wrap_content"
             android:text="window和windowmanager" />
 
+        <Button
+            android:id="@+id/btn_load_bitmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="bitmap的高效加载" />
+
+
+        <Button
+            android:id="@+id/btn_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关于listview的复用" />
+
+        <Button
+            android:id="@+id/btn_crashhandler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试crashHandler" />
+
     </LinearLayout>
 
 </ScrollView>
